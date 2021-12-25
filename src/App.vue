@@ -18,7 +18,7 @@ export default {
     Main
   },
   created () {
-    // this.$router.push('/')
+    this.$router.push('/main')
   }
 }
 </script>
