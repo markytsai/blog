@@ -7,15 +7,15 @@ const routes = [
   {
     path: '/main',
     name: 'Main',
-    component: () => import('../views/Main'),
+    component: () => import('@/views/Main'),
     children: [
       {
         path: 'blogs',
-        component: () => import('../views/BlogItemList')
+        component: () => import('@/views/BlogItemList')
       },
       {
         path: 'blogDetail/:blogId',
-        component: () => import('../views/BlogDetail')
+        component: () => import('@/views/BlogDetail')
       }
     ]
   }

@@ -62,10 +62,13 @@ export default {
 }
 
 .blog-summary {
-  height: 60px;
+  height: 57px;
   font-size: 14px;
   color: #566573;
   overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .blog-extra {
