@@ -9,7 +9,7 @@ import vuelazyload from 'vue-lazyload'
 
 Vue.config.productionTip = false
 Vue.use(vuelazyload, {
-  loading: '/default-pic.png',
+  loading: '/loading2.gif',
   error: '/default-pic.png'
 })
 new Vue({

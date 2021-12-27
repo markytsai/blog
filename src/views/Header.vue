@@ -3,15 +3,18 @@
     <div class="nav">
       <nav>
         <ul class="category-list">
-          <li class="single-category" v-for="(item, index) in categories" @mouseover="showCard(index)"
-              @mouseleave="hideCard" :key="index">
+          <li class="single-category" v-for="(item, index) in categories" @mouseenter="showCard(index)"
+              @mouseleave="hideCard(index)" :key="index">
             <a :href="item.category_link">{{ item.category_name }}</a>
+            <div>
+              <span class="arrow-up" :style="{display: valids[index]}"/>
+            </div>
           </li>
         </ul>
       </nav>
     </div>
-    <div id="card" :style="{left: length}" v-show="visible" @mouseover="showCard(-1)"
-         @mouseleave="hideCard">
+    <div id="card" :style="{left: length}" v-show="visible" @mouseenter="showCard(-1)"
+         @mouseleave="hideCard(-1)">
       <div class="inner-card" style="display: flex;">
         <div class="left-col" style="background-color: white">
           <ul>
@@ -32,8 +35,9 @@
             <div style="display: flex" v-for="(item, index) in sub_categories" :key="index">
               <div class="image">
                 <span>
-<!--                  <v-lazy-image :src="item.sub_category_img_link" src-placeholder="@/assets/image/default-pic.png"/>-->
+                  <a :href="item.sub_category_blog_link">
                   <img v-lazy="item.sub_category_img_link">
+                    </a>
                 </span>
               </div>
               <div class="title">
@@ -49,12 +53,11 @@
 
 <script>
 import VueSimpleSpinner from 'vue-simple-spinner'
-import VLazyImage from 'v-lazy-image'
+
 export default {
   name: 'Header',
   components: {
-    VueSimpleSpinner,
-    VLazyImage
+    VueSimpleSpinner
   },
   data () {
     return {
@@ -91,51 +94,59 @@ export default {
         {
           sub_category_name: '英语语法',
           sub_category_link: '/',
-          sub_category_img_link: 'http://image.mochoong.top/ce137bf7a7ee4433875082b08421b564.png',
+          sub_category_img_link: 'http://localhost:8082/img/gongzhonghao.f0a43e8c.jpg',
           sub_category_blog_name: 'Big Quit sends world’s back office back offshore',
           sub_category_blog_link: '/'
         }, {
           sub_category_name: '英语语法',
           sub_category_link: '/',
-          sub_category_img_link: 'http://image.mochoong.top/ce137bf7a7ee4433875082b08421b564.png',
+          sub_category_img_link: 'http://localhost:8082/img/gongzhonghao.f0a43e8c.jpg',
           sub_category_blog_name: 'Big Quit sends world’s back office back offshore',
           sub_category_blog_link: '/'
         }, {
           sub_category_name: '英语语法',
           sub_category_link: '/',
-          sub_category_img_link: 'http://image.mochoong.top/ce137bf7a7ee4433875082b08421b564.png',
+          sub_category_img_link: 'http://localhost:8082/img/gongzhonghao.f0a43e8c.jpg',
           sub_category_blog_name: 'Big Quit sends world’s back office back offshore',
           sub_category_blog_link: '/'
         }, {
           sub_category_name: '英语语法',
           sub_category_link: '/',
-          sub_category_img_link: 'http://image.mochoong.top/ce137bf7a7ee4433875082b08421b564.png',
+          sub_category_img_link: 'http://localhost:8082/img/gongzhonghao.f0a43e8c.jpg',
           sub_category_blog_name: 'Big Quit sends world’s back office back offshore',
           sub_category_blog_link: '/'
         }, {
           sub_category_name: '英语语法',
           sub_category_link: '/',
-          sub_category_img_link: 'http://image.mochoong.top/ce137bf7a7ee4433875082b08421b564.png',
+          sub_category_img_link: 'http://localhost:8082/img/gongzhonghao.f0a43e8c.jpg',
           sub_category_blog_name: 'Big Quit sends world’s back office back offshore',
           sub_category_blog_link: '/'
         }, {
           sub_category_name: '英语语法',
           sub_category_link: '/',
-          sub_category_img_link: 'http://image.mochoong.top/ce137bf7a7ee4433875082b08421b564.png',
+          sub_category_img_link: 'http://localhost:8082/img/gongzhonghao.f0a43e8c.jpg',
           sub_category_blog_name: 'Big Quit sends world’s back office back offshore',
           sub_category_blog_link: '/'
         }
       ],
-      loadFinished: undefined,
-      default_pic_url: '@/assets/image/default-pic.png'
+      loadFinished: false,
+      default_pic_url: '@/assets/image/default-pic.png',
+      valids: ['none', 'none', 'none', 'none', 'none', 'none', 'none', 'none'],
+      hoverIndex: undefined
     }
   },
   methods: {
     showCard (index) {
+      console.log('mouse over: ' + new Date())
       if (index === -1) {
         this.visible = true
+        this.valids[this.hoverIndex] = 'block'
         console.log('inner')
       } else {
+        if (this.hoverIndex === index) {
+          return
+        }
+        this.hoverIndex = index
         console.log('this')
         this.loadFinished = false
         const categoryCnt = this.categories.length
@@ -147,12 +158,18 @@ export default {
         }
         setTimeout(() => {
           this.loadFinished = true
-        }, 1000)
+        }, 500)
+        this.valids[index] = 'block'
         this.visible = true
       }
     },
-    hideCard () {
-      this.loadFinished = undefined
+    hideCard (index) {
+      if (index === -1) {
+        this.valids[this.hoverIndex] = 'none'
+        this.hoverIndex = undefined
+      } else {
+        this.valids[index] = 'none'
+      }
       this.visible = false
     }
   },
@@ -162,14 +179,15 @@ export default {
 </script>
 
 <style scoped>
-.v-lazy-image {
-  filter: blur(10px);
-  transition: filter 0.7s;
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+  border-bottom: 25px solid #404040;
+  margin: 0 auto;
 }
 
-.v-lazy-image-loaded {
-  filter: blur(0);
-}
 .header {
   height: 80px;
 }
@@ -182,7 +200,7 @@ export default {
 }
 
 nav {
-  margin-bottom: 15px;
+  /*margin-bottom: 15px;*/
   background: #fff;
   padding: 0 8px;
   border-radius: 0 0 16px 16px;
@@ -191,15 +209,15 @@ nav {
 
 #card {
   z-index: 999;
-  top: 60px;
+  top: 65px;
   position: absolute;
   /*left: 400px;*/
   /*display: none;*/
 }
 
-.single-category:hover ~ #card {
-  display: none;
-}
+/*.single-category:hover .arrow-up {*/
+/*  display: block;*/
+/*}*/
 
 .inner-card {
   border-radius: 0 0 16px 16px;
@@ -219,20 +237,17 @@ nav {
 }
 
 .category-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  white-space: nowrap;
-  position: relative;
   font-size: 15px;
   font-weight: bold;
+  display: flex;
+  /*justify-content: center;*/
 }
 
 .single-category {
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
-  padding: 22px 10px;
+  /*position: relative;*/
+  /*display: inline-block;*/
+  /*vertical-align: top;*/
+  padding: 30px 10px;
 }
 
 .right-col .right-col-content {
@@ -267,5 +282,9 @@ nav {
 
 .title a {
   color: white;
+}
+
+.title a:hover {
+  color: #ff8766;
 }
 </style>
