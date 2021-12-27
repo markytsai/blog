@@ -166,10 +166,10 @@ export default {
     hideCard (index) {
       if (index === -1) {
         this.valids[this.hoverIndex] = 'none'
-        this.hoverIndex = undefined
       } else {
         this.valids[index] = 'none'
       }
+      this.hoverIndex = undefined
       this.visible = false
     }
   },
