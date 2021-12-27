@@ -1,13 +1,13 @@
 <template>
   <div class="blog">
-    <span class="blog-pic"><a><img :src="blog.blog_pic"></a></span>
+    <span class="blog-pic" :class="[blogPicWidth]"><a><img :src="blog.blog_pic"></a></span>
     <h2 class="blog-title"><a href="javascript:void(0);" @click="goBlogDetail">{{blog.blog_title}}</a></h2>
     <p class="blog-summary">{{blog.blog_summary}}</p>
     <div class="blog-extra">
       <ul>
         <li><span class="fa fa-clock-o"></span><span>{{blog.blog_extra.blog_time}}</span></li>
         <li><span class="fa fa-eye"></span><span>{{ blog.blog_extra.blog_view_cnt }}</span></li>
-        <li><a class="comment-link-a" href="/blog/article/23#comment"><span
+        <li><a class="comment-link-a" href="/blog/blog/23#comment"><span
           class="fa fa-comments-o"></span><span>{{blog.blog_extra.blog_comment_cnt}}</span></a></li>
       </ul>
     </div>
@@ -20,6 +20,11 @@ export default {
   props: [
     'blog'
   ],
+  data () {
+    return {
+      blogPicWidth: 'display'
+    }
+  },
   methods: {
     goBlogDetail () {
       this.$router.push({
@@ -28,7 +33,6 @@ export default {
     }
   },
   created () {
-    console.log(this.blog)
   }
 }
 </script>
@@ -44,10 +48,16 @@ export default {
 .blog-pic {
   position: relative;
   float: left;
-  width: 194px;
   height: 120px;
   margin-right: 20px;
   overflow: hidden;
+}
+
+.display {
+  width: 194px;
+}
+.hide {
+  width: 0;
 }
 
 .blog-pic img {

@@ -7,26 +7,26 @@
     </ul>
     <div class="tab-content">
       <div :class="activeMap.latest" id="latest">
-        <ol class="article-list">
+        <ol class="blog-list">
           <li class="slide" v-for="(item, index) in newly_posted_blogs" :key="index">
             <span class="li-icon li-icon-1">{{ index + 1 }}</span>
-            <a href="/blog/article/41" :title="item.blog_title">{{ item.blog_title }}</a>
+            <a href="/blog/blog/41" :title="item.blog_title">{{ item.blog_title }}</a>
           </li>
         </ol>
       </div>
       <div :class="activeMap.recommend" id="recommend">
-        <ol class="article-list">
+        <ol class="blog-list">
           <li class="slide" v-for="(item, index) in recommended_blogs" :key="index">
             <span class="li-icon li-icon-1">{{ index + 1 }}</span>
-            <a href="/blog/article/41" :title="item.blog_title">{{ item.blog_title }}</a>
+            <a href="/blog/blog/41" :title="item.blog_title">{{ item.blog_title }}</a>
           </li>
         </ol>
       </div>
       <div :class="activeMap.hot" id="hot">
-        <ol class="article-list">
+        <ol class="blog-list">
           <li class="slide" v-for="(item, index) in popular_blogs" :key="index">
             <span class="li-icon li-icon-1">{{ index + 1 }}</span>
-            <a href="/blog/article/41" :title="item.blog_title">{{ item.blog_title }}</a>
+            <a href="/blog/blog/41" :title="item.blog_title">{{ item.blog_title }}</a>
           </li>
         </ol>
       </div>
@@ -149,7 +149,7 @@ export default {
   display: inline;
 }
 
-.article-list li {
+.blog-list li {
   white-space: nowrap;
   word-wrap: normal;
   text-overflow: ellipsis;
@@ -158,7 +158,7 @@ export default {
   text-align: left;
 }
 
-.article-list li a {
+.blog-list li a {
   /*color: #1a1a1a;*/
   padding-left: 10px;
   font-size: 14px;

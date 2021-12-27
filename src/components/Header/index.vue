@@ -26,7 +26,6 @@ export default {
     line-height: 30px;
 
     .container {
-      width: 1200px;
       margin: 0 auto;
       overflow: hidden;
 

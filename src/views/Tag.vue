@@ -44,9 +44,16 @@ export default {
   border-top-right-radius: 3px;
 }
 .tag-li {
-  padding: 0 10px 0 0;
-  font-size: 12px;
-  line-height: 20px;
+  color: #6ebbac;
+  padding: 10px 5px;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.tag-li:hover {
+  background-color: #ff8665;
+  color: #fff;
+  border-color: #ff8665;
 }
 
 .panel {

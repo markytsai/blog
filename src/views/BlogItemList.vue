@@ -1,7 +1,7 @@
 <template>
   <div class="main">
-    <BlogItem v-for="(item, index) in blogs" :key="index"
-              :blog=item
+    <BlogItem v-for="(index) in total" :key="index"
+              :blog=blogs[0]
     />
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
   },
   data () {
     return {
-      total: 5,
+      total: 10,
       blogs: [
         {
           blog_id: 1,

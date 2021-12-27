@@ -41,10 +41,8 @@ export default {
 .container {
   padding: 12px 0;
   justify-content: center;
-  width: 1100px;
   border-top: 1px dashed #ddd;
   margin: auto;
-  justify-content: space-between;
 }
 
 .container span:first-child {
