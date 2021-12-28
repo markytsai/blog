@@ -4,7 +4,7 @@
       <nav>
         <ul class="category-list">
           <li class="single-category" v-for="(item, index) in categories" @mouseenter="showCard(index)"
-              @mouseleave="hideCard(index)" :key="index">
+              @mouseleave="hideCard('li', index)" :key="index">
             <a :href="item.category_link" @click="goToCategory(item)">{{ item.category_name }}</a>
             <div>
               <span class="arrow-up" :style="{display: valids[index]}"/>
@@ -14,7 +14,7 @@
       </nav>
     </div>
     <div id="card" :style="{left: length}" v-show="visible" @mouseenter="showCard(-1)"
-         @mouseleave="hideCard(-1)">
+         @mouseleave="hideCard('card',-1)">
       <div class="inner-card">
         <div class="left-col" style="background-color: white">
           <ul>
@@ -146,17 +146,12 @@ export default {
       if (index === 0) {
         return
       }
-      console.log('mouse over: ' + new Date())
       if (index === -1) {
         this.visible = true
         this.valids[this.hoverIndex] = 'block'
-        console.log('inner')
       } else {
-        if (this.hoverIndex === index) {
-          return
-        }
+        this.valids[index] = 'block'
         this.hoverIndex = index
-        console.log('this')
         this.loadFinished = false
         const categoryCnt = this.categories.length
         const middle = categoryCnt / 2
@@ -171,17 +166,17 @@ export default {
         setTimeout(() => {
           this.loadFinished = true
         }, 500)
-        this.valids[index] = 'block'
         this.visible = true
       }
     },
-    hideCard (index) {
+    hideCard (type, index) {
       if (index === -1) {
         this.valids[this.hoverIndex] = 'none'
+        this.hoverIndex = undefined
       } else {
         this.valids[index] = 'none'
+        // this.hoverIndex = undefined
       }
-      this.hoverIndex = undefined
       this.visible = false
     }
   },
