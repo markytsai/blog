@@ -5,7 +5,7 @@
         <ul class="category-list">
           <li class="single-category" v-for="(item, index) in categories" @mouseenter="showCard(index)"
               @mouseleave="hideCard(index)" :key="index">
-            <a :href="item.category_link">{{ item.category_name }}</a>
+            <a :href="item.category_link" @click="goToCategory(item)">{{ item.category_name }}</a>
             <div>
               <span class="arrow-up" :style="{display: valids[index]}"/>
             </div>
@@ -65,6 +65,9 @@ export default {
       visible: false,
       categories: [
         {
+          category_name: '首页',
+          category_link: '/blogs'
+        }, {
           category_name: '金融',
           category_link: ''
         }, {
@@ -131,12 +134,18 @@ export default {
       ],
       loadFinished: false,
       default_pic_url: '@/assets/image/default-pic.png',
-      valids: ['none', 'none', 'none', 'none', 'none', 'none', 'none', 'none'],
+      valids: ['none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none'],
       hoverIndex: undefined
     }
   },
   methods: {
+    goToCategory (item) {
+      this.$router.push(item.category_link)
+    },
     showCard (index) {
+      if (index === 0) {
+        return
+      }
       console.log('mouse over: ' + new Date())
       if (index === -1) {
         this.visible = true
