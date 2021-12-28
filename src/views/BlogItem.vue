@@ -1,14 +1,14 @@
 <template>
   <div class="blog">
     <span class="blog-pic" :class="[blogPicWidth]"><a><img :src="blog.blog_pic"></a></span>
-    <h2 class="blog-title"><a href="javascript:void(0);" @click="goBlogDetail">{{blog.blog_title}}</a></h2>
-    <p class="blog-summary">{{blog.blog_summary}}</p>
+    <h2 class="blog-title"><a href="javascript:void(0);" @click="goBlogDetail">{{ blog.blog_title }}</a></h2>
+    <p class="blog-summary">{{ blog.blog_summary }}</p>
     <div class="blog-extra">
       <ul>
-        <li><span class="fa fa-clock-o"></span><span>{{blog.blog_extra.blog_time}}</span></li>
+        <li><span class="fa fa-clock-o"></span><span>{{ blog.blog_extra.blog_time }}</span></li>
         <li><span class="fa fa-eye"></span><span>{{ blog.blog_extra.blog_view_cnt }}</span></li>
         <li><a class="comment-link-a" href="/blog/blog/23#comment"><span
-          class="fa fa-comments-o"></span><span>{{blog.blog_extra.blog_comment_cnt}}</span></a></li>
+          class="fa fa-comments-o"></span><span>{{ blog.blog_extra.blog_comment_cnt }}</span></a></li>
       </ul>
     </div>
   </div>
@@ -27,12 +27,18 @@ export default {
   },
   methods: {
     goBlogDetail () {
-      this.$router.push({
-        path: `/main/blogDetail/${this.blog.blog_id}`
-      })
+      this.getBlogDetail(this.blog.blog_id)
+      this.$router.push(`/detail/${this.blog.blog_id}`)
+    },
+    getBlogDetail (id) {
+      console.log('Retrieving data from server..... blog_id = ' + id)
     }
   },
+  mounted () {
+    console.log('Retrieving data from server..... blog_id = ' + this.$route.params)
+  },
   created () {
+    console.log('Retrieving data from server..... blog_id = ' + this.$route.params)
   }
 }
 </script>
@@ -56,6 +62,7 @@ export default {
 .display {
   width: 194px;
 }
+
 .hide {
   width: 0;
 }
@@ -84,6 +91,7 @@ export default {
 .blog-extra {
   overflow: hidden;
 }
+
 .blog-extra ul li {
   display: inline-block;
   padding: 5px 10px 0 0;

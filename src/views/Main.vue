@@ -46,7 +46,7 @@ export default {
     }
   },
   created () {
-    this.$router.push('/main/blogs')
+    // this.$router.push('/blogs')
   },
   watch: {
     windowWidth (newVal) {
@@ -71,6 +71,10 @@ export default {
   margin: 20px auto;
 }
 
+.container-mobile {
+  margin: 20px auto;
+}
+
 .container .left-side {
   width: 70%;
   padding: 10px 10px;
@@ -81,6 +85,7 @@ export default {
 
 .container .right-side {
   width: 30%;
+  min-width: 30%;
   padding: 10px 10px;
   border-radius: 16px;
   box-shadow: 0 1px 16px 10px rgb(64 64 64 / 8%);
@@ -91,14 +96,12 @@ export default {
   padding: 10px 10px;
   border-radius: 16px;
   box-shadow: 0 1px 16px 10px rgb(64 64 64 / 8%);
-  margin-right: 5px;
 }
 
 .container-mobile .right-side {
   padding: 10px 10px;
   border-radius: 16px;
   box-shadow: 0 1px 16px 10px rgb(64 64 64 / 8%);
-  margin-left: 5px;
 }
 
 a:hover {

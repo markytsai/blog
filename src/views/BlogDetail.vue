@@ -19,9 +19,6 @@
 <script>
 export default {
   name: 'BlogDetail',
-  props: [
-    'blogContent'
-  ],
   created () {
     this.blogContent =
       '<p>这篇是分享一些英语学习资料和资源，会持续更新</p>\n' +

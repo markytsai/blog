@@ -5,16 +5,17 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/main',
+    path: '/',
     name: 'Main',
     component: () => import('@/views/Main'),
+    redirect: '/blogs',
     children: [
       {
         path: 'blogs',
         component: () => import('@/views/BlogItemList')
       },
       {
-        path: 'blogDetail/:blogId',
+        path: 'detail/:blogId',
         component: () => import('@/views/BlogDetail')
       }
     ]

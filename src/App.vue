@@ -1,24 +1,19 @@
 <template>
   <div id="app">
-    <Head/>
+    <Header/>
     <router-view></router-view>
     <Footer/>
   </div>
 </template>
 
 <script>
-import Head from '@/views/Header'
-import Header from '@/components/Header'
+import Header from '@/views/Header'
 import Footer from '@/components/Footer'
 
 export default {
   components: {
     Header,
-    Footer,
-    Head
-  },
-  created () {
-    this.$router.push('/main')
+    Footer
   }
 }
 </script>
