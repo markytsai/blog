@@ -101,4 +101,26 @@ a:hover {
   color: #ff8665;
   text-decoration: none;
 }
+
+@media screen and (max-width: 900px) and (min-width: 600px) {
+  .blog-pic {
+    /*width: calc(100vw / 5);*/
+    float: left;
+    position: relative;
+    height: 120px;
+    margin-right: 20px;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .blog-pic[data-v-584bc4e2] {
+    width: auto !important;
+    float: none;
+    position: relative;
+    height: 120px;
+    margin-right: 20px;
+    overflow: hidden;
+  }
+}
 </style>

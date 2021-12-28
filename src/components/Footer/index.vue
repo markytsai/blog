@@ -50,7 +50,11 @@ export default {
 }
 
 .container span:nth-child(2) {
-  padding-right: 0;
+  //padding-right: 0;
+}
+
+.links a:last-child {
+  padding: 0 0 0 3px;
 }
 
 .links a {

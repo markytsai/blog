@@ -1,7 +1,7 @@
 <template>
-  <div :class="[containerClass]">
+  <div class="container">
     <div class="left-side">
-      <router-view :imageSize=imageSize />
+      <router-view/>
     </div>
     <div class="right-side">
       <Search/>
@@ -33,75 +33,72 @@ export default {
     return {
       containerClass: 'container',
       windowWidth: document.body.clientWidth,
-      imageSize: 194
+      imageSize: 194,
+      prevScrollPos: window.pageYOffset
     }
   },
   mounted () {
-    const that = this
-    window.onresize = () => {
-      return (() => {
-        window.screenWidth = document.body.clientWidth
-        that.windowWidth = window.screenWidth
-      })()
-    }
-  },
-  created () {
-    // this.$router.push('/blogs')
-  },
-  watch: {
-    windowWidth (newVal) {
-      this.windowWidth = newVal
-      if (newVal >= 1200) {
-        this.containerClass = 'container'
-      } else {
-        this.containerClass = 'container-mobile'
-      }
-      if (newVal < 700) {
-        this.imageSize = 0
-      }
-    }
+    console.log(this.prevScrollPos)
+    // window.onscroll = function () {
+    //   const currentScrollPos = window.pageYOffset
+    //   if (this.prevScrollPos > currentScrollPos) {
+    //     document.getElementById('navId').style.display = 'block'
+    //   } else {
+    //     document.getElementById('navId').style.display = 'none'
+    //   }
+    //   this.prevScrollPos = currentScrollPos
+    // }
   }
 }
 </script>
 
 <style scoped>
-.container {
-  width: 1200px;
-  display: flex;
-  margin: 20px auto;
+
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 1200px;
+    display: flex;
+    margin: 20px auto;
+  }
+
+  .container .left-side {
+    width: 70%;
+    padding: 10px 10px;
+    border-radius: 16px;
+    box-shadow: 0 1px 16px 10px rgb(64 64 64 / 8%);
+    margin-right: 5px;
+  }
+
+  .container .right-side {
+    width: 30%;
+    min-width: 30%;
+    padding: 10px 10px;
+    border-radius: 16px;
+    box-shadow: 0 1px 16px 10px rgb(64 64 64 / 8%);
+    margin-left: 5px;
+  }
 }
 
-.container-mobile {
-  margin: 20px auto;
-}
+@media screen and (max-width: 1200px) {
+  .container {
+    margin: 20px auto;
+  }
 
-.container .left-side {
-  width: 70%;
-  padding: 10px 10px;
-  border-radius: 16px;
-  box-shadow: 0 1px 16px 10px rgb(64 64 64 / 8%);
-  margin-right: 5px;
-}
+  .container .left-side {
+    /*padding: 10px 10px;*/
+    border-radius: 16px;
+    box-shadow: 0 1px 16px 10px rgb(64 64 64 / 8%);
+  }
 
-.container .right-side {
-  width: 30%;
-  min-width: 30%;
-  padding: 10px 10px;
-  border-radius: 16px;
-  box-shadow: 0 1px 16px 10px rgb(64 64 64 / 8%);
-  margin-left: 5px;
-}
+  .container .right-side {
+    /*padding: 10px 10px;*/
+    border-radius: 16px;
+    box-shadow: 0 1px 16px 10px rgb(64 64 64 / 8%);
+  }
 
-.container-mobile .left-side {
-  padding: 10px 10px;
-  border-radius: 16px;
-  box-shadow: 0 1px 16px 10px rgb(64 64 64 / 8%);
-}
-
-.container-mobile .right-side {
-  padding: 10px 10px;
-  border-radius: 16px;
-  box-shadow: 0 1px 16px 10px rgb(64 64 64 / 8%);
+  .blog-pic {
+    width: 0;
+  }
 }
 
 a:hover {

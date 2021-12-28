@@ -1,6 +1,6 @@
 <template>
   <div class="header" style="display: flex">
-    <div class="nav">
+    <div id="navId" class="nav">
       <nav>
         <ul class="category-list">
           <li class="single-category" v-for="(item, index) in categories" @mouseenter="showCard(index)"
@@ -15,7 +15,7 @@
     </div>
     <div id="card" :style="{left: length}" v-show="visible" @mouseenter="showCard(-1)"
          @mouseleave="hideCard(-1)">
-      <div class="inner-card" style="display: flex;">
+      <div class="inner-card">
         <div class="left-col" style="background-color: white">
           <ul>
             <li class="category-link"><a href="/">Africa</a></li>
@@ -94,37 +94,37 @@ export default {
         {
           sub_category_name: '英语语法',
           sub_category_link: '/',
-          sub_category_img_link: 'http://localhost:8082/img/gongzhonghao.f0a43e8c.jpg',
+          sub_category_img_link: 'https://pbs.twimg.com/media/FHpCzObXIAYrjvU?format=jpg&name=small',
           sub_category_blog_name: 'Big Quit sends world’s back office back offshore',
           sub_category_blog_link: '/'
         }, {
           sub_category_name: '英语语法',
           sub_category_link: '/',
-          sub_category_img_link: 'http://localhost:8082/img/gongzhonghao.f0a43e8c.jpg',
+          sub_category_img_link: 'https://pbs.twimg.com/media/FHpCzObXIAYrjvU?format=jpg&name=small',
           sub_category_blog_name: 'Big Quit sends world’s back office back offshore',
           sub_category_blog_link: '/'
         }, {
           sub_category_name: '英语语法',
           sub_category_link: '/',
-          sub_category_img_link: 'http://localhost:8082/img/gongzhonghao.f0a43e8c.jpg',
+          sub_category_img_link: 'https://pbs.twimg.com/media/FHpCzObXIAYrjvU?format=jpg&name=small',
           sub_category_blog_name: 'Big Quit sends world’s back office back offshore',
           sub_category_blog_link: '/'
         }, {
           sub_category_name: '英语语法',
           sub_category_link: '/',
-          sub_category_img_link: 'http://localhost:8082/img/gongzhonghao.f0a43e8c.jpg',
+          sub_category_img_link: 'https://pbs.twimg.com/media/FHpCzObXIAYrjvU?format=jpg&name=small',
           sub_category_blog_name: 'Big Quit sends world’s back office back offshore',
           sub_category_blog_link: '/'
         }, {
           sub_category_name: '英语语法',
           sub_category_link: '/',
-          sub_category_img_link: 'http://localhost:8082/img/gongzhonghao.f0a43e8c.jpg',
+          sub_category_img_link: 'https://pbs.twimg.com/media/FHpCzObXIAYrjvU?format=jpg&name=small',
           sub_category_blog_name: 'Big Quit sends world’s back office back offshore',
           sub_category_blog_link: '/'
         }, {
           sub_category_name: '英语语法',
           sub_category_link: '/',
-          sub_category_img_link: 'http://localhost:8082/img/gongzhonghao.f0a43e8c.jpg',
+          sub_category_img_link: 'https://pbs.twimg.com/media/FHpCzObXIAYrjvU?format=jpg&name=small',
           sub_category_blog_name: 'Big Quit sends world’s back office back offshore',
           sub_category_blog_link: '/'
         }
@@ -155,6 +155,9 @@ export default {
           this.length = window.innerWidth / 2 - 377 - 50 * (middle - index) + 'px'
         } else {
           this.length = window.innerWidth / 2 - 377 + 50 * (index - middle) + 'px'
+        }
+        if (this.length < '0px') {
+          this.length = 0 + 'px'
         }
         setTimeout(() => {
           this.loadFinished = true
@@ -220,6 +223,7 @@ nav {
 /*}*/
 
 .inner-card {
+  display: flex;
   border-radius: 0 0 16px 16px;
   box-shadow: 0 0 16px rgb(50 50 93 / 25%), 0 0 5px rgb(77 77 77 / 10%);
 }
@@ -227,6 +231,32 @@ nav {
 .category-link {
   padding: 5px;
   padding: 5px 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .inner-card {
+    display: contents;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 0 16px rgb(50 50 93 / 25%), 0 0 5px rgb(77 77 77 / 10%);
+  }
+
+  .arrow-up {
+    display: none !important;
+  }
+
+  #card {
+    left: calc(0vw) !important;
+    min-width: 300px;
+  }
+
+  .category-link {
+    display: inline-block;
+  }
+
+  .right-col .right-col-content {
+    grid-template-columns: 300px !important;
+    grid-template-rows: 100px 100px 100px 100px 100px 100px !important;
+  }
 }
 
 .left-col ul {
