@@ -38,16 +38,33 @@ export default {
     }
   },
   mounted () {
+    const body = document.body
+    const scrollUp = 'scroll-up'
+    const scrollDown = 'scroll-down'
+    let lastScroll = 0
+
     console.log(this.prevScrollPos)
-    // window.onscroll = function () {
-    //   const currentScrollPos = window.pageYOffset
-    //   if (this.prevScrollPos > currentScrollPos) {
-    //     document.getElementById('navId').style.display = 'block'
-    //   } else {
-    //     document.getElementById('navId').style.display = 'none'
-    //   }
-    //   this.prevScrollPos = currentScrollPos
-    // }
+    window.onscroll = () => {
+      const currentScroll = window.pageYOffset
+      if (currentScroll <= 0) {
+        body.classList.remove(scrollUp)
+        return
+      }
+
+      if (currentScroll > lastScroll && !body.classList.contains(scrollDown)) {
+        // down
+        body.classList.remove(scrollUp)
+        body.classList.add(scrollDown)
+      } else if (
+        currentScroll < lastScroll &&
+        body.classList.contains(scrollDown)
+      ) {
+        // up
+        body.classList.remove(scrollDown)
+        body.classList.add(scrollUp)
+      }
+      lastScroll = currentScroll
+    }
   }
 }
 </script>
@@ -58,7 +75,7 @@ export default {
   .container {
     width: 1200px;
     display: flex;
-    margin: 20px auto;
+    margin: 100px auto;
   }
 
   .container .left-side {
@@ -81,7 +98,7 @@ export default {
 
 @media screen and (max-width: 1200px) {
   .container {
-    margin: 20px auto;
+    margin: 100px auto;
   }
 
   .container .left-side {

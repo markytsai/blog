@@ -52,11 +52,9 @@ export default {
 }
 
 .blog-pic {
-  position: relative;
   float: left;
   height: 120px;
   margin-right: 20px;
-  overflow: hidden;
 }
 
 .display {
@@ -106,7 +104,7 @@ a:hover {
   .blog-pic {
     /*width: calc(100vw / 5);*/
     float: left;
-    position: relative;
+    /*position: relative;*/
     height: 120px;
     margin-right: 20px;
     overflow: hidden;

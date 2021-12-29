@@ -175,7 +175,6 @@ export default {
         this.hoverIndex = undefined
       } else {
         this.valids[index] = 'none'
-        // this.hoverIndex = undefined
       }
       this.visible = false
     }
@@ -197,10 +196,13 @@ export default {
 
 .header {
   height: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .nav {
-  /*pointer-events: none;*/
   display: flex;
   justify-content: center;
   margin: 0 auto;
@@ -320,5 +322,17 @@ nav {
 
 .title a:hover {
   color: #ff8766;
+}
+
+.header {
+  transition: transform 0.4s;
+}
+
+.scroll-down .header {
+  transform: translate3d(0, -100%, 0);
+}
+
+.scroll-up .header {
+  transform: none;
 }
 </style>
