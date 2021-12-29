@@ -22,7 +22,8 @@ export default {
 
 .search-input input {
   width: 96%;
-  height: 20px;
+  font-size: 15px;
+  height: 30px;
   padding: 0 4px 0;
   border-radius: 5px;
 }
