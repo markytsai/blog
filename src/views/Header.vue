@@ -89,7 +89,7 @@ export default {
           category_name: '资源分享',
           category_link: ''
         }, {
-          category_name: '留言板',
+          category_name: '留言',
           category_link: ''
         }
       ],

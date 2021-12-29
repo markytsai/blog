@@ -24,7 +24,13 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  mode: 'history'
+  mode: 'history',
+  scrollBehavior () {
+    return {
+      x: 0,
+      y: 0
+    }
+  }
 })
 
 export default router
