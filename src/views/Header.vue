@@ -6,11 +6,11 @@
           <li class="single-category" v-for="(item, index) in categories" @mouseenter="showCard(index)"
               @mouseleave="hideCard('li', index)" :key="index">
             <a :href="item.category_link" @click="goToCategory(item)">{{ item.category_name }}</a>
-            <div>
-              <span class="arrow-up" :style="{display: valids[index]}"/>
-            </div>
           </li>
         </ul>
+        <div id="arrowId" class="arrow" style="display: none">
+          <span class="arrow-up"/>
+        </div>
       </nav>
     </div>
     <div id="card" :style="{left: length}" v-show="visible" @mouseenter="showCard(-1)"
