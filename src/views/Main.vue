@@ -3,7 +3,7 @@
     <div class="left-side">
       <router-view/>
     </div>
-    <div class="right-side">
+    <div class="right-side" style="height: 100%">
       <Search/>
       <Tag/>
       <NewPost/>
@@ -115,6 +115,10 @@ export default {
 
   .blog-pic {
     width: 0;
+  }
+
+  .blog-body {
+    padding: 10px;
   }
 }
 
